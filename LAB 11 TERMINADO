@@ -1,0 +1,92 @@
+laboratorio 11
+import 'package:flutter/material.dart';
+
+void main() => runApp(MyApp());
+
+class Evento {
+  final String imagenUrl;
+  final String nombre;
+  final String deporte;
+  final String fecha;
+  final String ubicacion;
+
+  Evento({
+    required this.imagenUrl,
+    required this.nombre,
+    required this.deporte,
+    required this.fecha,
+    required this.ubicacion,
+  });
+}
+
+class MyApp extends StatelessWidget {
+  final List<Evento> eventos = [
+    Evento(
+      imagenUrl: 'https://img.rtve.es/imagenes/norma-manos-cambios-reglamento-futbol/1703089636211.jpg',
+      nombre: 'FUBTOL PARA TODOS',
+      deporte: 'Fútbol',
+      fecha: '25 de mayo de 2024',
+      ubicacion: 'Estadio A',
+    ),
+    Evento(
+      imagenUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDNK1SfEH2kz8oJY0lbcvbrMOKm3wGxAUxs4YJynpAHg&s',
+      nombre: 'BALONCESTO LO MEJOR',
+      deporte: 'Baloncesto',
+      fecha: '27 de mayo de 2024',
+      ubicacion: 'Gimnasio B',
+    ),
+    Evento(
+      imagenUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-wSbjopff68ctk39HiuF4bWSJydTuIq3rTI6crhOLpA&s',
+      nombre: 'VOLEY CHAMPIONS',
+      deporte: 'Voley',
+      fecha: '29 de mayo de 2024',
+      ubicacion: 'Estadio B',
+    ),
+    Evento(
+      imagenUrl: 'https://hips.hearstapps.com/hmg-prod/images/perfect-butterfly-stroke-royalty-free-image-1638896152.jpg?resize=980:*',
+      nombre: 'NO TE UNDAS',
+      deporte: 'Natación',
+      fecha: '32 de mayo de 2024',
+      ubicacion: 'Gimnasio A',
+    ),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Eventos'),
+        ),
+        body: ListView.builder(
+          itemCount: eventos.length,
+          itemBuilder: (context, index) {
+            return Card(
+              elevation: 15,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: ListTile(
+                leading: Image.network(
+                  eventos[index].imagenUrl,
+                  width: 100,
+                  height: 100,
+                  fit: BoxFit.cover,
+                ),
+                title: Text(eventos[index].nombre),
+                subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text('Deporte: ${eventos[index].deporte}'),
+                    Text('Fecha: ${eventos[index].fecha}'),
+                    Text('Ubicación: ${eventos[index].ubicacion}'),
+                  ],
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
